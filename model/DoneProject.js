@@ -45,7 +45,7 @@ const userSchema = new mongoose.Schema({
 //       project_url: { type: String }
 //     }
 //   ]
-});
+}); 
 
 const DoneProject = mongoose.model('doneProject', userSchema, 'listProject');
 
