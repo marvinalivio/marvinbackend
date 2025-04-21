@@ -21,7 +21,7 @@ app.use(helmet());
 
 //  CORS: Adjust this to match the frontend URL
 app.use(cors({
-  origin: process.env.CLIENT_ORIGIN,
+  origin: process.env.CLIENT_ORIGIN || 'https://reactjsmarvin.netlify.app',
   credentials: true, // Allow cookies/authorization headers
 }));
 
