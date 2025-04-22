@@ -20,11 +20,21 @@ app.use(express.json());
 app.use(helmet());
 
 //  CORS: Adjust this to match the frontend URL
-app.use(cors({
-  origin: process.env.CLIENT_ORIGIN || 'https://reactjsmarvin.netlify.app',
-  credentials: true, // Allow cookies/authorization headers
-}));
+const allowedOrigins = [
+  process.env.CLIENT_ORIGIN || 'http://localhost:5173',
+  'https://reactjsmarvin.netlify.app'
+]; 
 
+app.use(cors({
+  origin: function (origin, callback) {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
+  credentials: true,
+}));
 // Route setup
 app.use('/', DataFetch);
 
